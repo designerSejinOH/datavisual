@@ -28,3 +28,7 @@ function draw() {
   text("현재 치료중 " + care, 10, 90);
   console.log(cor, ncor, care);
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
