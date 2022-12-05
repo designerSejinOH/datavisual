@@ -23,14 +23,28 @@ $.get(
   }
 );
 
+let myFont;
+
+function preload() {
+  myFont = loadFont("js/Galmuri9.ttf");
+}
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  textFont(myFont);
+  createEasyCam();
+  document.oncontextmenu = () => false;
 }
 
 function draw() {
+  let w = width;
+  let h = height;
+
   background(200);
-  let fontSize = 20;
-  let lineHeight = 10;
+  push();
+  translate(-w / 7, -h / 7, 0);
+  let fontSize = w / 50;
+  let lineHeight = h / 50;
   textSize(fontSize);
   fill(0);
   text(" 도시 : " + city, lineHeight, fontSize + lineHeight);
@@ -48,11 +62,9 @@ function draw() {
     lineHeight,
     (fontSize + lineHeight) * 6
   );
-  text(
-    " 성동구소재지 생활인구 : " + inpp,
-    lineHeight,
-    (fontSize + lineHeight) * 7
-  );
+  text(" 총 생활인구 : " + pp, lineHeight, (fontSize + lineHeight) * 7);
+  text(" 내국인 생활인구 : " + inpp, lineHeight, (fontSize + lineHeight) * 8);
+  pop();
 }
 
 function windowResized() {
